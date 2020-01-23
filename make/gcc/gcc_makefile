@@ -21,7 +21,7 @@ GCC_VERSION=4.8.3
 
 #C_PREDEF=-D __CUSTOMER_CODE__
 #C_PREDEF=-D __EXAMPLE_TCPCLIENT__
-C_PREDEF=-D __BC26__
+C_PREDEF=-D __PONY_WELL__
 #-------------------------------------------------------------------------------
 # Configure version and out target
 #-------------------------------------------------------------------------------
