@@ -1,9 +1,9 @@
 
 
+//globe define here
 
-//GPIO define
-Enum_PinName  LED_UART  =PINNAME_GPIO2;
-Enum_PinName  LED_NET   =PINNAME_NETLIGHT;
-Enum_PinName  SEND485   =PINNAME_GPIO1;
+#define sleep(a) Ql_Sleep(a)
 
-Enum_PinName  xxxxx =PINNAME_RI ;
+#define true TRUE
+#define false FALSE
+

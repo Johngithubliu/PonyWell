@@ -16,23 +16,26 @@
 #include "ql_gpio.h"
 
 #include "def.h"
+#include "io.h"
+#include "uart0.h"
+
+
+bool initialized=false;
 
 void proc_main_task(s32 taskId)
 {
-    // Initialize the GPIO pin (output high level, pull up)
-    Ql_GPIO_Init(LED_UART, PINDIRECTION_OUT, PINLEVEL_LOW, PINPULLSEL_PULLUP);      
-    Ql_GPIO_Init(LED_NET, PINDIRECTION_OUT, PINLEVEL_LOW, PINPULLSEL_PULLUP);
-    Ql_GPIO_Init(SEND485, PINDIRECTION_OUT, PINLEVEL_LOW, PINPULLSEL_PULLUP);
-    //Ql_GPIO_Init(contron, PINDIRECTION_OUT, PINLEVEL_HIGH, PINPULLSEL_PULLUP);
+    uart0init();
+    ioInit();
+  
+    initialized=true;
     
-    while(TRUE)
+    while(true)
     {
-        Ql_Sleep(100);
-        Ql_GPIO_SetLevel(LED_NET,PINLEVEL_LOW);
-        Ql_GPIO_SetLevel(LED_UART,PINLEVEL_LOW);
-        Ql_Sleep(500);
-        Ql_GPIO_SetLevel(LED_NET,PINLEVEL_HIGH);
-        Ql_GPIO_SetLevel(LED_UART,PINLEVEL_HIGH);
+        APP_DEBUG("Good afternoon\r\n");
+        ledStatusOn();
+        sleep(50);
+        ledStatusOff();
+        sleep(3000);
     }
 }
  
@@ -40,10 +43,11 @@ void proc_send2srv(s32 taskId)
 {
     while(TRUE)
     {
-        Ql_Sleep(1000);
-        //Ql_GPIO_SetLevel(LED_UART,PINLEVEL_LOW);
-        Ql_Sleep(1000);
-        //Ql_GPIO_SetLevel(LED_UART,PINLEVEL_HIGH);
+        ledNetworkOn();
+        sleep(1000);
+        ledNetworkOff();
+        sleep(2000);
+        
     }
 }
 
@@ -51,10 +55,7 @@ void proc_tcp_network(s32 taskId)
 {
     while(TRUE)
     {
-        Ql_Sleep(1500);
-        //Ql_GPIO_SetLevel(SEND485,PINLEVEL_LOW);
-        Ql_Sleep(1500);
-        //Ql_GPIO_SetLevel(SEND485,PINLEVEL_HIGH);
+        sleep(1500);
     }
 
 }
