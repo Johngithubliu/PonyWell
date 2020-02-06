@@ -41,6 +41,8 @@ void proc_main_task(s32 taskId)
  
 void proc_send2srv(s32 taskId)
 {
+    while(!initialized) sleep(100);
+
     while(TRUE)
     {
         ledNetworkOn();
@@ -53,6 +55,7 @@ void proc_send2srv(s32 taskId)
 
 void proc_tcp_network(s32 taskId)
 {
+    while(!initialized) sleep(100);
     while(TRUE)
     {
         sleep(1500);
